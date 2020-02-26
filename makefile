@@ -1,8 +1,8 @@
 main: init-k8s;
 stop: stop-k8s;
 
-init-k8s: init-namespace init-volumn init-deployment;
-stop-k8s: terminate-namespace terminate-volumn terminate-deployment;
+init-k8s: init-namespace init-volumn init-deployment init-ingress;
+stop-k8s: terminate-namespace terminate-volumn terminate-deployment terminate-ingress;
 
 init-namespace:
 	kubectl apply -f k8s/namespace.yml;
@@ -21,3 +21,9 @@ init-deployment:
 
 terminate-deployment:
 	kubectl delete -f k8s/deployment.yml;
+
+init-ingress:
+	kubectl apply -f k8s/ingress.yml;
+
+terminate-ingress:
+	kubectl delete -f k8s/ingress.yml;

@@ -28,3 +28,18 @@ spec:
         - name: task-pv-storage
           persistentVolumeClaim:
             claimName: task-pv-claim
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-app-service
+  namespace: test-volumn
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 80
+  type: NodePort
